@@ -1,0 +1,25 @@
+== Resultados do teste ==
+Normalização: /255.0
+PCA: 50 componentes
+Treinamento: 70%
+Classificador: knn
+k = 7
+Métrica: manhattan
+
+Acurácia (Validação): 0.9717
+Acurácia (Teste): 0.9711
+
+Matriz de confusão (Teste):
+[[ 992    0    2    0    1    2    3    0    1    0]
+ [   0 1198    5    1    0    1    0    3    0    1]
+ [   5   11 1021    2    1    0    2   15    3    2]
+ [   1    1    8 1095    0   12    0    9    4    8]
+ [   2   11    0    0  928    0    3    3    0   21]
+ [   4    2    0   11    0  927    6    0    2    4]
+ [   4    0    0    0    1    2  992    0    0    0]
+ [   0   14    3    0    1    0    0 1081    0   10]
+ [   3    9    2   10    2   13    5    6  948    6]
+ [   5    6    2    5   10    2    1    8    1 1015]]
+
+Tempo de execução: 23.62 segundos
+
