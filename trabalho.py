@@ -28,19 +28,19 @@ print("Carregando MNIST...")
 mnist = fetch_openml('mnist_784', version=1, as_frame=False)
 X, y = mnist.data, mnist.target.astype(int)
 
-# 2. Normalização
+#  Normalização
 X = X / NORMALIZACAO
 
-# 3. PCA - Redução de dimensionalidade
+#  PCA - Redução de dimensionalidade
 print("Aplicando PCA...")
 pca = PCA(n_components=PCA_COMPONENTES)
 X_reduced = pca.fit_transform(X)
 
-# 4. Divisão dos dados
+# Divisão dos dados
 X_train, X_temp, y_train, y_temp = train_test_split(X_reduced, y, test_size=1 - TREINO_PORCENTAGEM, random_state=RANDOM_STATE)
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=RANDOM_STATE)
 
-# 5. Classificador
+# Classificador
 if CLASSIFICADOR == 'knn':
     print("\n== Classificador: kNN ==")
     clf = KNeighborsClassifier(n_neighbors=KNN_K, metric=KNN_METRICA)
@@ -48,23 +48,22 @@ else:
     print("\n== Classificador: Regressão Logística ==")
     clf = LogisticRegression(max_iter=1000)
 
-# 6. Treinamento
+# Treinamento
 clf.fit(X_train, y_train)
 
-# 7. Predições
+#  Predições
 y_val_pred = clf.predict(X_val)
 y_test_pred = clf.predict(X_test)
 
-# 8. Avaliação
+
 acc_val = accuracy_score(y_val, y_val_pred)
 acc_test = accuracy_score(y_test, y_test_pred)
 conf_matrix = confusion_matrix(y_test, y_test_pred)
 
-# 9. Tempo total
+
 fim_tempo = time.time()
 tempo_execucao = fim_tempo - inicio_tempo
 
-# 10. Salvando resultados
 with open(saida_caminho, 'w') as f:
     f.write(f"== Resultados do teste ==\n")
     f.write(f"Normalização: /{NORMALIZACAO}\n")
